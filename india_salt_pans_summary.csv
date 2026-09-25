@@ -1,0 +1,70 @@
+Category,Metric,Value,Notes
+Overall,Total entries,43,"Dataset v1 compiled 2026-09-21; documented-coverage dataset, NOT a complete national enumeration"
+Entries by state/UT,Andhra Pradesh,5,
+Entries by state/UT,Dadra and Nagar Haveli and Daman and Diu,1,
+Entries by state/UT,Goa,6,
+Entries by state/UT,Gujarat,9,
+Entries by state/UT,Himachal Pradesh,1,
+Entries by state/UT,Karnataka,1,
+Entries by state/UT,Maharashtra,7,
+Entries by state/UT,Odisha,2,
+Entries by state/UT,Rajasthan,6,
+Entries by state/UT,Tamil Nadu,4,
+Entries by state/UT,West Bengal,1,
+Entries by site type,Individual Salt Pan,5,
+Entries by site type,Other,2,
+Entries by site type,Regional Salt-Producing Area,13,
+Entries by site type,Salt Lake,4,
+Entries by site type,Salt Production Cluster,11,
+Entries by site type,Salt Works,8,
+Production status,Active,13,
+Production status,Seasonal,12,
+Production status,Unknown,12,
+Production status,Inactive,5,
+Production status,Abandoned,1,
+Active vs inactive,Active or Seasonal,25,
+Active vs inactive,Inactive or Abandoned,6,
+Active vs inactive,Unknown,12,
+Spatial coverage,Entries with coordinates,19,
+Spatial coverage,Entries without coordinates,24,
+Coordinate accuracy,Approximate,2,
+Coordinate accuracy,High,3,
+Coordinate accuracy,Region-level,14,
+Coordinate accuracy,Unknown,24,
+Spatial coverage,Entries with polygons,0,No boundary polygons were available from reliable open sources during compilation
+Attribute coverage,Entries with production data,6,Includes self-reported and regional figures - see Production_Year
+Attribute coverage,Entries with official area data,7,Government-originating acreage converted to hectares
+Attribute coverage,Entries with GIS-derived (polygon) area,0,
+Remote sensing,Entries with satellite verification (Remote_Sensing_Confirmed = Yes),0,No imagery interpretation was performed
+Remote sensing,Entries in states covered by NRSC Salt Pan Atlas,32,Coverage inferred from NRSC page statement; site-level inclusion not verified
+Ecology,Entries with ecological information,12,
+Ecology,Entries flagged Ramsar_Site = Yes,2,
+Ecology,Entries flagged Protected_Area = Yes,3,
+Data confidence,High,4,
+Data confidence,Medium,9,
+Data confidence,Low,30,
+Verification status,Partially Verified,28,
+Verification status,Unverified,15,
+QC: Duplicate_Check,Pass,43,
+QC: Coordinate_Check,Review,24,
+QC: Coordinate_Check,Pass,19,
+QC: Polygon_Check,Pass,43,
+QC: Area_Check,Pass,37,
+QC: Area_Check,Review,6,
+QC: Source_Check,Review,33,
+QC: Source_Check,Pass,10,
+"Context: state salt production 2021-22 (IBM IMYB 2022, from Salt Commissioner)",Gujarat,227.64 lakh tonnes (85%),Reference statistic; not a sum of dataset rows
+"Context: state salt production 2021-22 (IBM IMYB 2022, from Salt Commissioner)",Rajasthan,16.90 lakh tonnes,Reference statistic; not a sum of dataset rows
+"Context: state salt production 2021-22 (IBM IMYB 2022, from Salt Commissioner)",Tamil Nadu,17.21 lakh tonnes,Reference statistic; not a sum of dataset rows
+"Context: state salt production 2021-22 (IBM IMYB 2022, from Salt Commissioner)",All other states,4.24 lakh tonnes,Reference statistic; not a sum of dataset rows
+"Context: state salt production 2021-22 (IBM IMYB 2022, from Salt Commissioner)",India total,266 lakh tonnes,Reference statistic; not a sum of dataset rows
+Context: reference,SCO-reported salt-pan land (national),"~60,000 acres (AP 20,716; TN 17,095; Maharashtra 12,662)","UPSC secondary sources; AP figure differs from Hans India (19,026 acres)"
+Context: reference,Average labour employed in salt industry 2021-22,"77,086",IBM IMYB 2022
+Coverage limitation,Note,"This is a documented-coverage dataset, not a complete census of Indian salt pans. Industry summaries citing Salt Commissioner data report ~11,453 manufacturers on ~7.47 lakh acres (UJA, 2025) and ~6.16 lakh acres in 2014-15 (Tamil Nadu Salt Corporation); only named/identifiable sites and regional clusters found in accessible sources are included here.",
+Coverage limitation,Note,"No polygon boundaries were included: the NRSC/ISRO Salt Pan Atlas of India (30+ MB PDF), SCO land records and Bhuvan layers could not be programmatically retrieved; none were fabricated.",
+Coverage limitation,Note,Coordinates for regional/cluster rows are Wikipedia infobox centroids of the nearest town/lake/subdivision and are flagged Region-level or Approximate; do not use them as pan locations.,
+Coverage limitation,Note,"Kerala, Puducherry, Andaman & Nicobar and Lakshadweep: no reliable site-level documentation was found, so no records were added. Raigad/Ratnagiri (Maharashtra), Porbandar, Ramanathapuram and Cuddalore were mentioned only in low-reliability sources and were not added.",
+Coverage limitation,Note,Sources that could not be fetched directly (site blocks automated access): saltcomindia.gov.in PDF was read from search snippets only. NRSC atlas PDF exceeded the fetch size limit.,
+URL validation,Note,All URLs were returned by search/fetch results during compilation. HTTP validity could not be re-tested from the offline sandbox; re-validate before publishing.,
+Schema note,Note,The brief listed 'Satellite_Source' twice (#36 and #105). #105 was renamed 'Satellite_Source_Citation' to keep column names unique for GIS import.,
+Data quality,Note,"Conflicting figures were left unresolved and flagged (Area_Check = Review): AP land (19,026 vs 20,716 acres), Goa (2,978 ha; Pernem 18.0232 ha = 4.5%), Sanikatta (400 vs 500 acres), Thoothukudi (25,000 acres, journalist figure), Tamil Nadu production share (11% vs ~6%).",

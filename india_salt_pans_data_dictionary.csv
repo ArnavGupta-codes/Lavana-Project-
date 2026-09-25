@@ -1,0 +1,118 @@
+Column_Name,Description,Data_Type,Allowed_Values,Unit,Example,Source_Requirement
+Salt_Pan_ID,Unique record identifier (IN-<state code>-<serial>),Text,Pattern IN-XX-NNN,,IN-GJ-001,Assigned by compiler
+Salt_Pan_Name,"Official/common name of the site, works, cluster or region",Text,,,Sambhar Salt Lake,At least one source
+Alternate_Name,"Alternative, local or historical names",Text,,,Shakambhari Jheel,If known
+Site_Type,Type of entry; distinguishes individual sites from cluster/regional entries,Categorical,Individual Salt Pan; Salt Works; Salt Production Cluster; Regional Salt-Producing Area; Salt Lake; Other,,Salt Lake,Compiler classification
+State,Indian state (blank for a Union Territory entry),Text,,,Gujarat,Source
+Union_Territory,Union Territory (blank for state entries),Text,,,Dadra and Nagar Haveli and Daman and Diu,Source
+District,District(s); multiple separated by semicolons,Text,,,Surendranagar,Source
+Taluka_Block,Taluka/tehsil/block/mandal,Text,,,Pernem,Source
+Village_Locality,Village or locality,Text,,,Kharaghoda,Source
+Nearest_City,Nearest city where sourced,Text,,,Dwarka,Source
+Nearest_Road,Nearest named road (not populated - no source reviewed),Text,,,,Source
+Nearest_Port,Nearest port where sourced,Text,,,Okha,Source
+Latitude,Latitude in decimal degrees (WGS84); may be a proxy - see Coordinate_Accuracy,Numeric,-90 to 90 (India: ~6 to 37.6),decimal degrees,26.94167,Coordinate_Source
+Longitude,Longitude in decimal degrees (WGS84),Numeric,-180 to 180 (India: ~68 to 97.5),decimal degrees,75.07639,Coordinate_Source
+Latitude_DMS,"Latitude in degrees-minutes-seconds, derived by script from decimal value",Text,,deg-min-sec,"26°56'30.01""N",Derived
+Longitude_DMS,"Longitude in degrees-minutes-seconds, derived by script from decimal value",Text,,deg-min-sec,"75°04'35.00""E",Derived
+Coordinate_Accuracy,How well the coordinate locates the actual site,Categorical,Exact; High; Approximate; Region-level; Unknown,,Region-level,Required
+Coordinate_Source,Origin of the coordinate,Text,,,Research paper,Required when coordinates present
+Coordinate_Confidence,Confidence in coordinate,Categorical,High; Medium; Low,,Low,Required when coordinates present
+Elevation_Meters,Elevation above sea level if sourced,Numeric,,metres,360,Source
+Distance_To_Coast_KM,Distance to coast (not populated - no coastline GIS layer used),Numeric,,km,,Computed from coastline layer
+Coast_Type,Coastal water body / inland,Categorical,Arabian Sea; Bay of Bengal; Indian Ocean; Inland; Unknown,,Arabian Sea,Source
+Geometry_Type,Type of geometry supplied,Categorical,Point; Polygon; Multipolygon; Approximate Point; Regional Boundary; Unknown,,Approximate Point,Required
+Geometry_Available,Whether any geometry (WKT) is provided,Categorical,Yes; No; Unknown,,Yes,Required
+Polygon_Available,Whether a boundary polygon is provided (No for all records in v1),Categorical,Yes; No; Unknown,,No,Required
+Polygon_Source,Source of polygon (empty in v1),Text,,,,Required if polygon
+Polygon_Accuracy,Accuracy of polygon,Categorical,Exact; High; Moderate; Approximate; Unknown,,Unknown,Required if polygon
+Polygon_Area_Hectares,Area computed from GIS polygon (empty in v1; never mixed with official area),Numeric,,hectares,,GIS polygon
+Official_Area_Hectares,Officially reported area converted to hectares (acres x 0.404686). Only used for government-originating figures,Numeric,,hectares,595.71,Area_Source
+Area_Source,Source and conversion note for Official_Area_Hectares,Text,,,,Required when area present
+WKT_Geometry,Geometry as WKT in lon lat order,Text (WKT),POINT / POLYGON / MULTIPOLYGON,EPSG:4326,POINT (75.07639 26.94167),Geometry source
+GeoJSON_Geometry,"Geometry as GeoJSON (coordinates lon,lat)",JSON,,EPSG:4326,"{""type"":""Point"",""coordinates"":[75.07639,26.94167]}",Geometry source
+Bounding_Box,"min_lon,min_lat,max_lon,max_lat (empty in v1: no extents available for point records)",Text,,decimal degrees,,Geometry source
+CRS,Coordinate reference system,Text,EPSG:4326,,EPSG:4326,Required when geometry present
+Satellite_Image_Available,Whether imagery was retrieved/analysed for this record (Unknown: no imagery analysis performed),Categorical,Yes; No; Unknown,,Unknown,Required
+Satellite_Source,Sensor/platform used for interpretation (empty: none performed),Text,Sentinel-2; Landsat; ISRO; Cartosat; Google Earth; Planet; Other,,,Required if imagery used
+Satellite_Image_Date,Imagery date,Date,YYYY-MM-DD,,,Required if imagery used
+Satellite_Image_URL,Public imagery URL,URL,,,,Required if imagery used
+Satellite_Resolution_Meters,Imagery spatial resolution,Numeric,,metres,,Sensor spec
+Remote_Sensing_Confirmed,Whether the record was confirmed through remote sensing,Categorical,Yes; No; Unknown,,No,Required
+Salt_Pan_Visible_In_Imagery,Whether salt pans are visible in imagery,Categorical,Yes; No; Unclear; Unknown,,Unknown,Imagery
+Image_Interpretation_Confidence,Confidence of image interpretation,Categorical,High; Medium; Low,,,Imagery
+NDVI_Available,Whether NDVI was computed,Categorical,Yes; No; Unknown,,No,Imagery
+NDWI_Available,Whether NDWI was computed,Categorical,Yes; No; Unknown,,No,Imagery
+Other_Remote_Sensing_Indices,"Other indices (e.g., salinity indices)",Text,,,,Imagery
+Seasonal_Change,Seasonal change visible in imagery,Text,,,,Imagery
+Salt_Pan_Type,Production system type,Categorical,Coastal solar evaporation; Inland salt pan; Marine salt works; Salt lake; Brine-based; Other,,Coastal solar evaporation,Source
+Salt_Source,Raw material for salt,Categorical,Seawater; Groundwater; Brine; Salt lake; Other,,Seawater,Source
+Production_Status,Operational status,Categorical,Active; Seasonal; Inactive; Abandoned; Unknown,,Seasonal,Source
+Production_Method,Production method,Text,,,Solar evaporation,Source
+Salt_Product,Type of salt product,Categorical,Solar salt; Edible salt; Industrial salt; Iodized salt; Other,,Solar salt,Source
+Production_Capacity_Tonnes_Per_Year,Installed/nameplate capacity (not populated - no capacity data found),Numeric,,tonnes/year,,Source
+Actual_Production_Tonnes_Per_Year,Reported production in metric tonnes per year (see Production_Year for qualification),Numeric,,tonnes/year,200000,Source required
+Production_Year,Reference year/qualification for production figure,Text,,,2021-22,Source
+Production_Trend,Trend,Categorical,Increasing; Decreasing; Stable; Variable; Unknown,,Decreasing,Source
+Ownership,Ownership category,Categorical,Government; Private; Cooperative; Community; Mixed; Unknown,,Cooperative,Source
+Operator,Operator/lessee,Text,,,Tata Chemicals Ltd,Source
+Lease_Status,Lease information where applicable,Text,,,,Source
+Establishment_Year,Year/period of establishment,Text,,,1939,Source
+Salt_Worker_Count,Number of salt workers (site-level or estimate),Numeric,,persons,45000,Source
+Wetland_Association,Associated wetland/landscape,Text,,,,Source
+Nearby_Wetland,Nearby wetland(s),Text,,,Thane Creek Flamingo Sanctuary,Source
+Ramsar_Site,Whether the site lies within a Ramsar site,Categorical,Yes; No; Unknown,,Yes,Ramsar
+Ramsar_Site_Name,Ramsar site name/number,Text,,,Sambhar Lake (464),Ramsar
+Protected_Area,Whether within a protected area,Categorical,Yes; No; Unknown,,Yes,WII/State
+Protected_Area_Name,Protected area name,Text,,,Indian Wild Ass Sanctuary,WII/State
+Ecological_Importance,Ecological importance,Text,,,,Source
+Bird_Habitat,Bird habitat documented,Categorical,Yes; No; Unknown,,Yes,Source
+Migratory_Birds_Documented,Migratory birds documented,Categorical,Yes; No; Unknown,,Yes,Source
+Biodiversity_Notes,Biodiversity notes,Text,,,,Source
+Environmental_Status,Environmental condition,Text,,,,Source
+Environmental_Threats,Reported threats,Text,,,,Source
+Climate_Risk,Climate risk described in source,Text,,,,Source
+Coastal_Erosion_Risk,Coastal erosion risk (not populated),Text,,,,Source
+Flood_Risk,Flood risk/role,Text,,,,Source
+Sea_Level_Rise_Risk,Sea-level rise risk (not populated),Text,,,,Source
+Groundwater_Risk,Groundwater risk,Text,,,,Source
+Surrounding_Land_Use,Surrounding land use,Text,,,Salt production; wetland,Source
+Urban_Distance_KM,Distance to urban area (not populated),Numeric,,km,,GIS
+Industrial_Area_Distance_KM,Distance to industrial area (not populated),Numeric,,km,,GIS
+Agriculture_Distance_KM,Distance to agriculture (not populated),Numeric,,km,,GIS
+Major_Infrastructure_Nearby,Major infrastructure nearby (not populated),Text,,,,Source
+Land_Use_Change,Documented land-use change,Text,,,,Source
+Historical_Land_Use,Historical land use (not populated),Text,,,,Source
+Historical_Importance,Historical importance,Text,,,,Source
+Historical_Production,Historical production,Text,,tonnes (as stated),,Source
+Cultural_Importance,Cultural importance,Text,,,,Source
+Historical_Name,Historical/local name,Text,,,,Source
+Relevant_Historical_Event,Relevant historical event,Text,,,,Source
+Legal_Status,Legal/land status,Text,,,,Source
+Government_Notification,Government notification/order,Text,,,,Source
+Lease_or_License_Number,Lease/licence number (not populated - none found),Text,,,,SCO/State
+Regulatory_Authority,Regulatory authority,Text,,,,Source
+Government_Department,Responsible department,Text,,,,Source
+Environmental_Clearance,Environmental clearance (not populated),Text,,,,MoEFCC/State
+Protected_Status,Other protected status (not populated),Text,,,,Source
+Primary_Source,Primary source name,Text,,,,Required
+Source_Organization,Publishing organisation,Text,,,,Required
+Source_Title,Title of primary source,Text,,,,Required
+Source_URL,URL of primary source (retrieved during compilation; see summary note on URL validation),URL,,,,Required
+Secondary_Source,Secondary source name,Text,,,,Optional
+Secondary_Source_URL,Secondary source URL,URL,,,,Optional
+Academic_Source,Academic/peer-reviewed source,Text,,,,Optional
+Academic_Source_URL,Academic source URL,URL,,,,Optional
+Satellite_Source_Citation,Renamed from the brief's second 'Satellite_Source' (#105) to avoid a duplicate header; cites the satellite/atlas reference relevant to the record,Text,,,NRSC/ISRO Salt Pan Atlas of India,Optional
+Satellite_Source_URL,URL for satellite/atlas reference,URL,,,,Optional
+Source_Publication_Date,"Publication date of primary source (YYYY, YYYY-MM or YYYY-MM-DD); blank for continuously edited pages",Date,,,2025-10-27,Source
+Last_Verified,Date the record was compiled/verified against the cited source,Date,YYYY-MM-DD,,2026-09-21,Required
+Data_Confidence,Overall confidence in the record,Categorical,High; Medium; Low,,Medium,Required
+Verification_Status,Verification level (Verified is not used in v1: no record was validated against a primary government GIS layer),Categorical,Verified; Partially Verified; Unverified,,Partially Verified,Required
+Duplicate_Check,"Duplicate check on name, ID and coordinate",Categorical,Pass; Review,,Pass,Script
+Coordinate_Check,"Pass = coordinate present, within India extent, within coarse state box and lon>lat (no reversal); Review = missing or outside",Categorical,Pass; Review,,Pass,Script
+Polygon_Check,Pass = no polygon claimed and none fabricated (consistent with Polygon_Available),Categorical,Pass; Review,,Pass,Script
+Area_Check,Review = area figures conflict between sources or appear implausible; official and polygon areas never mixed,Categorical,Pass; Review,,Pass,Manual
+Source_Check,Pass = primary source is authoritative or peer-reviewed/official; Review = media/reference-site or proxy coordinates,Categorical,Pass; Review,,Review,Manual
+Data_Gaps,Auto-generated list of major gaps,Text,,,,Script
+Notes,"Free-text caveats, conflicts between sources and reasons for exclusions",Text,,,,Compiler
