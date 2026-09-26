@@ -579,12 +579,12 @@ a:hover {
   background: #08101e;
   border-radius: var(--radius-md);
   padding: 0.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 .layer-btn {
   background: transparent;
-  border: none;
-  color: var(--text-muted);
+  border: 1px solid transparent;
+  color: #94a3b8;
   font-size: 0.78rem;
   font-weight: 600;
   padding: 0.35rem 0.75rem;
@@ -592,9 +592,14 @@ a:hover {
   cursor: pointer;
   transition: all var(--transition-fast);
 }
+.layer-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
 .layer-btn.active {
-  background: rgba(0, 240, 255, 0.18);
-  color: var(--accent-cyan);
+  background: rgba(29, 122, 137, 0.35);
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.35);
 }
 
 .leaflet-bar {
@@ -629,9 +634,9 @@ a:hover {
   bottom: 1.25rem;
   left: 1.25rem;
   z-index: 500;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.12);
   border-radius: var(--radius-md);
   padding: 0.75rem 1rem;
   font-size: 0.82rem;
@@ -657,76 +662,84 @@ a:hover {
 .ind-seasonal { background-color: var(--accent-amber); }
 .ind-ramsar { background-color: var(--accent-pink); }
 
-/* Custom Leaflet Map Pin */
+/* Custom Leaflet Map Pin - DO NOT set position:relative which breaks Leaflet layout */
 .salt-pin {
-  display: grid;
-  place-items: center;
+  display: flex !important;
+  align-items: flex-start;
+  justify-content: center;
   cursor: pointer;
   transition: transform var(--transition-fast);
-  filter: drop-shadow(0 8px 16px rgba(15, 23, 42, 0.22));
-  position: relative;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
+  margin: 0;
+  padding: 0;
+  pointer-events: auto;
+  transform-origin: 15px 34px;
 }
 .salt-pin:hover {
-  transform: scale(1.25);
+  transform: scale(1.3);
   z-index: 9999 !important;
 }
 .salt-pin::after {
   content: "";
   position: absolute;
   left: 50%;
-  top: 16px;
+  top: 18px;
   transform: translateX(-50%);
   width: 0;
   height: 0;
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  border-top: 10px solid rgba(29, 122, 137, 0.95);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 12px solid #1d7a89;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 .salt-pin.pink::after {
-  border-top-color: rgba(178, 70, 114, 0.95);
+  border-top-color: #b24672;
 }
 .salt-pin.amber::after {
-  border-top-color: rgba(179, 115, 45, 0.95);
+  border-top-color: #b3732d;
 }
 .salt-pin.purple::after {
-  border-top-color: rgba(111, 90, 169, 0.95);
+  border-top-color: #6f5aa9;
+}
+.salt-pin.turquoise::after {
+  border-top-color: #0f766e;
 }
 
 .pin-core {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: linear-gradient(135deg, #42d8ef 0%, #1d7a89 100%);
-  border: 2px solid #e8fbff;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 0 0 4px rgba(29, 122, 137, 0.18), 0 8px 18px rgba(29, 122, 137, 0.28);
-  font-size: 13px;
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 3px rgba(29, 122, 137, 0.3), 0 4px 12px rgba(0, 0, 0, 0.35);
   position: relative;
+  z-index: 2;
 }
-.pin-core::after {
-  content: "";
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: rgba(255,255,255,0.18);
+.pin-core .pin-dot {
+  width: 6px;
+  height: 6px;
+  background: #ffffff;
   border-radius: 50%;
-  transform: translateY(7px) scale(0.8);
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.9);
 }
 .salt-pin.pink .pin-core {
-  background: linear-gradient(135deg, #ffb1c9 0%, #b24672 100%);
-  border-color: #fff5f8;
-  box-shadow: 0 0 0 4px rgba(178, 70, 114, 0.18), 0 8px 18px rgba(178, 70, 114, 0.25);
+  background: linear-gradient(135deg, #ff94b8 0%, #b24672 100%);
+  box-shadow: 0 0 0 3px rgba(178, 70, 114, 0.3), 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 .salt-pin.amber .pin-core {
-  background: linear-gradient(135deg, #f9d89c 0%, #b3732d 100%);
-  border-color: #fffaf2;
-  box-shadow: 0 0 0 4px rgba(179, 115, 45, 0.16), 0 8px 18px rgba(179, 115, 45, 0.22);
+  background: linear-gradient(135deg, #fcd34d 0%, #b3732d 100%);
+  box-shadow: 0 0 0 3px rgba(179, 115, 45, 0.3), 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 .salt-pin.purple .pin-core {
-  background: linear-gradient(135deg, #d9d3ff 0%, #6f5aa9 100%);
-  border-color: #f5f3ff;
-  box-shadow: 0 0 0 4px rgba(111, 90, 169, 0.18), 0 8px 18px rgba(111, 90, 169, 0.25);
+  background: linear-gradient(135deg, #c084fc 0%, #6f5aa9 100%);
+  box-shadow: 0 0 0 3px rgba(111, 90, 169, 0.3), 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+.salt-pin.turquoise .pin-core {
+  background: linear-gradient(135deg, #2dd4bf 0%, #0f766e 100%);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.3), 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
 /* Custom Leaflet Popup */
@@ -826,7 +839,7 @@ a:hover {
 .three-toolbar {
   padding: 1rem 1.5rem;
   background: #0b1526;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -850,10 +863,11 @@ a:hover {
 .three-title {
   font-size: 1.15rem;
   font-weight: 700;
+  color: #f8fafc;
 }
 .three-subtitle {
-  font-size: 0.8rem;
-  color: var(--text-dim);
+  font-size: 0.82rem;
+  color: #94a3b8;
 }
 
 .three-controls-wrap {
@@ -884,22 +898,45 @@ a:hover {
   display: block;
 }
 
+/* 3D Map Marker Beacon */
+.map3d-marker {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ff4d8d;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 4px rgba(255, 77, 141, 0.4), 0 0 20px #ff4d8d;
+  cursor: pointer;
+  animation: pulse-beacon 2s infinite ease-in-out;
+}
+
+@keyframes pulse-beacon {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 4px rgba(255, 77, 141, 0.4), 0 0 20px #ff4d8d;
+  }
+  50% {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 8px rgba(255, 77, 141, 0.2), 0 0 30px #ff4d8d;
+  }
+}
+
 /* 3D HUD Overlays */
 .three-hud-top {
   position: absolute;
   top: 1.25rem;
   left: 1.25rem;
   z-index: 10;
-  background: rgba(7, 13, 24, 0.8);
-  border: 1px solid var(--border-subtle);
+  background: rgba(7, 13, 24, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   padding: 0.8rem 1.2rem;
   border-radius: var(--radius-md);
-  max-width: 340px;
+  max-width: 380px;
   pointer-events: none;
 }
 .hud-title {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: #ffffff;
   display: flex;
@@ -908,9 +945,9 @@ a:hover {
   margin-bottom: 0.3rem;
 }
 .hud-desc {
-  font-size: 0.76rem;
-  color: var(--text-muted);
-  line-height: 1.4;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  line-height: 1.45;
 }
 
 .three-hud-bottom {
@@ -931,19 +968,21 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(7, 13, 24, 0.85);
-  border: 1px solid var(--border-subtle);
+  background: rgba(7, 13, 24, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: var(--radius-full);
-  padding: 0.35rem 0.8rem;
+  padding: 0.4rem 1rem;
   backdrop-filter: blur(8px);
   pointer-events: auto;
+  font-size: 0.76rem;
+  color: #cbd5e1;
 }
 .stage-chip {
   padding: 0.3rem 0.75rem;
   border-radius: var(--radius-full);
   font-size: 0.74rem;
   font-weight: 600;
-  color: var(--text-dim);
+  color: #94a3b8;
   cursor: pointer;
   transition: all var(--transition-fast);
 }
@@ -957,12 +996,12 @@ a:hover {
 }
 
 .three-instructions {
-  background: rgba(7, 13, 24, 0.85);
-  border: 1px solid var(--border-subtle);
+  background: rgba(7, 13, 24, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: var(--radius-full);
   padding: 0.4rem 1rem;
-  font-size: 0.75rem;
-  color: var(--text-muted);
+  font-size: 0.76rem;
+  color: #cbd5e1;
   backdrop-filter: blur(8px);
 }
 
@@ -1193,6 +1232,16 @@ a:hover {
   gap: 1rem;
   margin-bottom: 1.25rem;
 }
+.baume-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 0.35rem;
+}
+.baume-subtitle {
+  font-size: 0.86rem;
+  color: #94a3b8;
+}
 .baume-readout {
   display: flex;
   align-items: baseline;
@@ -1207,7 +1256,7 @@ a:hover {
 }
 .baume-unit {
   font-size: 1.1rem;
-  color: var(--text-muted);
+  color: #94a3b8;
   font-weight: 600;
 }
 
@@ -1260,8 +1309,8 @@ a:hover {
   margin-bottom: 0.2rem;
 }
 .baume-phase-precipitate {
-  font-size: 0.85rem;
-  color: var(--text-muted);
+  font-size: 0.86rem;
+  color: #cbd5e1;
 }
 .baume-quality-badge {
   padding: 0.35rem 0.85rem;
@@ -1496,11 +1545,18 @@ a:hover {
   gap: 0.75rem;
   font-size: 0.9rem;
   color: var(--text-muted);
+  line-height: 1.55;
+}
+.quality-item strong {
+  color: var(--text-main);
+  font-weight: 700;
+  display: inline;
 }
 .quality-icon {
   color: var(--accent-turquoise);
   font-size: 1.1rem;
   margin-top: 0.15rem;
+  flex-shrink: 0;
 }
 
 /* Modal Dossier */
@@ -1545,7 +1601,7 @@ a:hover {
 .modal-header {
   padding: 1.5rem 2rem;
   background: #0c1628;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -1566,13 +1622,13 @@ a:hover {
 }
 .modal-subtitle {
   font-size: 0.9rem;
-  color: var(--accent-cyan);
+  color: #38bdf8;
 }
 
 .modal-close-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: none;
-  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -1583,21 +1639,21 @@ a:hover {
   transition: all var(--transition-fast);
 }
 .modal-close-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   color: #ffffff;
 }
 
 .modal-tabs {
   display: flex;
   background: #08101e;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 0 1.5rem;
   overflow-x: auto;
 }
 .modal-tab {
   background: transparent;
   border: none;
-  color: var(--text-muted);
+  color: #94a3b8;
   font-size: 0.88rem;
   font-weight: 600;
   padding: 0.9rem 1.2rem;
@@ -1610,8 +1666,8 @@ a:hover {
   color: #ffffff;
 }
 .modal-tab.active {
-  color: var(--accent-cyan);
-  border-bottom-color: var(--accent-cyan);
+  color: #38bdf8;
+  border-bottom-color: #38bdf8;
 }
 
 .modal-body {
@@ -1634,8 +1690,8 @@ a:hover {
   margin-bottom: 1.5rem;
 }
 .dossier-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(15, 23, 42, 0.08);
   border-radius: var(--radius-md);
   padding: 1rem 1.25rem;
 }
@@ -1660,7 +1716,7 @@ a:hover {
 .modal-footer {
   padding: 1.2rem 2rem;
   background: #0c1628;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1692,10 +1748,10 @@ a:hover {
 /* Footer */
 .footer {
   background: #040810;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: 4rem 0 2rem;
   font-size: 0.88rem;
-  color: var(--text-dim);
+  color: #94a3b8;
 }
 
 .footer-grid {
@@ -1709,6 +1765,7 @@ a:hover {
   margin-top: 1rem;
   line-height: 1.6;
   max-width: 360px;
+  color: #94a3b8;
 }
 
 .footer-col h4 {
@@ -1727,21 +1784,23 @@ a:hover {
   gap: 0.6rem;
 }
 .footer-links a {
-  color: var(--text-muted);
+  color: #94a3b8;
+  transition: color var(--transition-fast);
 }
 .footer-links a:hover {
-  color: var(--accent-cyan);
+  color: #38bdf8;
 }
 
 .footer-bottom {
   padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
   font-size: 0.8rem;
+  color: #64748b;
 }
 
 /* Responsive Media Queries */

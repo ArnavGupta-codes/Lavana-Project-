@@ -98,7 +98,7 @@ class SaltPanMap {
         html: `<div class="pin-core"><span class="pin-dot"></span></div>`,
         iconSize: [30, 38],
         iconAnchor: [15, 34],
-        popupAnchor: [0, -24]
+        popupAnchor: [0, -32]
       });
 
       const marker = L.marker([lat, lon], { icon: customIcon });

@@ -507,5 +507,12 @@ def process_data():
         json.dump(client_dataset, f, indent=2, ensure_ascii=False)
     print(f"Saved lightweight client dataset to data/salt_pans_client.json with {len(client_dataset)} records.")
 
+    # Keep js/fallback_data.js in sync for local file:// usage
+    with open('js/fallback_data.js', 'w', encoding='utf-8') as f:
+        f.write('window.FALLBACK_SALT_PANS = ')
+        json.dump(client_dataset, f, indent=2, ensure_ascii=False)
+        f.write(';\n')
+    print(f"Synchronized js/fallback_data.js with {len(client_dataset)} records.")
+
 if __name__ == '__main__':
     process_data()
